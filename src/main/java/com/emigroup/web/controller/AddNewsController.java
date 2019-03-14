@@ -36,11 +36,24 @@ public class AddNewsController {
         Comparator invertDictOrderForNews = new Comparator<News>() {//倒序
             @Override
             public int compare(News o1, News o2) {
+
+                String []o1_candidate = o1.getDate().split("-");
+                String []o2_candidate = o2.getDate().split("-");
+                String o12str = "";
+                for(int i = 0;i<o1_candidate.length;i++){
+                    o12str+=o1_candidate[i];
+                }
+                String o22str = "";
+                for(int i = 0;i<o2_candidate.length;i++){
+                    o22str+=o2_candidate[i];
+                }
+
+
                 // TODO Auto-generated method stub
-                if(o1.getId()<o2.getId())
+                if(o12str.compareTo(o22str)<0)
                     return 1;
                     //注意！！返回值必须是一对相反数，否则无效。jdk1.7以后就是这样。
-                    //		else return 0; //无效
+                    //		else return 0; //无效o1_candidate
                 else return -1;
             }
         };

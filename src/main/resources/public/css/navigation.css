@@ -1,0 +1,151 @@
+body{
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+
+}
+.header{
+    left:0;
+    top:0;
+    bottom: 0;
+    right:0;
+    width:100%;
+    height:110px;
+    /*min-width: 1800px;*/
+    min-height: 110px;
+    background-color: #2077a8;
+    /*子元素溢出时的处理*/
+    overflow:hidden;
+}
+.header .logo {
+    width:4%;
+    height:100px;
+    max-height: 100px;
+    margin:0;
+    display: inline-block;
+    vertical-align:top;
+}
+.header .left_title{
+    width:32%;
+    display: inline-block;
+    vertical-align:top;
+}
+.header .center{
+    width:55%;
+    display: inline-block;
+    vertical-align:top;
+}
+
+.navi{
+    display:inline-block;
+    positon:relative;
+    width:100%;
+    height: 100px;
+    max-height: 100px;
+    font: 0/50px Georgia;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:center;
+    margin:34px auto 0;
+    /*min-width: 1300px;*/
+    /*指定为auto 是居中对齐*/
+
+    border-radius:10px;
+
+}
+.navi a{
+    font-size: 125%;
+
+    color: #f9f4f4;
+    text-decoration:none;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+
+}
+.navi a:active{
+    color: rgba(16, 20, 158, 0.95);
+}
+.navi a:hover{
+    color: #ffa139;
+    text-decoration: none;
+}
+
+.navi li{
+    /*相对于其正常位置进行定位*/
+    position:relative;
+    /*块元尝试获取整个宽度并在布局中开始新行，内联元素与其他元素保持在同一行*/
+    /*如果仅仅是inline*/
+
+    display:inline-block;
+
+    padding:0 3%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    /*text-shadow:1px 2px 4px rgba(0,0,0,.5);*/
+    list-style: none outside none;
+}
+/*使用伪元素制作导航列表项分隔线*/
+
+/*删除第一项和最后一项导航分隔线*/
+/*使用伪元素制作导航列表项分隔线*/
+/*.navi li::before,.nav li::after{*/
+    /*content:"";*/
+    /*position:absolute;*/
+    /*top:14px;*/
+    /*height: 25px;*/
+    /*width: 1px;*/
+    /*}*/
+    /*.navi li::after{*/
+    /*right: 0;*/
+    /*background: -moz-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,.2) 50%, rgba(255,255,255,0));*/
+    /*background: -webkit-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,.2) 50%, rgba(255,255,255,0));*/
+    /*background: -o-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,.2) 50%, rgba(255,255,255,0));*/
+    /*background: -ms-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,.2) 50%, rgba(255,255,255,0));*/
+    /*background: linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,.2) 50%, rgba(255,255,255,0));*/
+/*}*/
+/*.navi li::before{*/
+    /*left: 0;*/
+    /*background: -moz-linear-gradient(top, #ffffff, #ffffff 50%, #ffffff);*/
+    /*background: -webkit-linear-gradient(top, #ffffff, #ffffff 50%, #ffffff);*/
+    /*background: -o-linear-gradient(top, #ffffff, #ffffff 50%, #ffffff);*/
+    /*background: -ms-linear-gradient(top, #ffffff, #ffffff 50%, #ffffff);*/
+    /*background: linear-gradient(top, #ffffff, #ffffff 50%, #ffffff);*/
+/*}*/
+
+/*删除第一项和最后一项导航分隔线*/
+.navi li:first-child::before{
+    background: none;
+}
+
+.navi li:last-child::after{
+    background: none;
+}
+.distance{
+    width:100%;
+    height:6px;
+    background: #ffffff;
+}
+
+#slidershow img{
+    width:100%;
+}
+.footpage{
+    overflow: hidden;
+    margin:80px auto  0 0;
+    height:150px;
+    background: #2077a8;
+
+}
+.footpage .description {
+    margin: 50px auto;
+    text-align: center;
+
+}
+.footpage .description h2{
+    color: #f9fff3;
+}
+.sustc:hover{
+    cursor:pointer;
+}
+

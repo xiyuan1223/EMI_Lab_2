@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>EMI Group</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/news.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="css/body.css">
+
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a href="emi.html">Home</a></li>
+            <li><a href="member.html">Members</a></li>
+            <li><a href="research.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a style="color:black" href="news.html">News&Info</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--**************************************头部****************************************************************-->
+<div class="news">
+    <ul id="listnews">
+
+    </ul>
+</div>
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+    $.ajax(
+        {
+            type: "post",
+            url: "addnews/findall",
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                console.log("find news success");
+                for (i = 0; i < data.length; i++) {
+                    if(data[i].abs.length>=400){
+                        data[i].abs = data[i].abs.substring(0,400)+"..."
+                    }
+
+                    var ul = $("#listnews");
+                    ul.append("<li class=\"jumpnews\" id=" + data[i].id + "><a href=\"#\">" +"<h3>"+data[i].title+"<span style=\'color:black; font-size:60%;\'> &nbsp ["+data[i].date+"]</span></h3></a>"  + data[i].abs + "</li>")
+                }
+
+            },
+            error: function (data) {
+                alert("error,please try again");
+
+            }
+        }
+    )
+</script>
+
+<script>
+    $(document).on("click", ".jumpnews", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        window.location.href="shownews.html?id="+id;  // 地址会改变参数也会被传递但是不会打开新窗口
+    })
+</script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";
+    })
+</script>
+</body>
+</html>

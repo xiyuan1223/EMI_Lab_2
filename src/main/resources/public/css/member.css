@@ -1,0 +1,47 @@
+.full{
+    width:52%;
+    margin:0 auto;
+    overflow: hidden;
+
+}
+.full a{
+    cursor:pointer;
+}
+.full h3{
+    color: #2077a8;
+}
+.faculty,.pd,.ra,.ms,gr,.visitor {
+    min-height: 200px;
+    margin:30px 0 0 0;
+    text-overflow:ellipsis;
+    overflow: hidden;
+
+}
+.faculty img, .pd img{
+    width:150px;
+    height:200px;
+}
+.faculty .description,.pd .description{
+
+    padding:0 0 0 40px;
+}
+.description{
+    width:490px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+
+}
+
+.ra .post,.ms .post,.visitor .post{
+    width:500px;
+}
+.ra .post img,.ms .post img,.visitor .post img{
+    width:100px;
+    height:133px;
+    overflow:hidden;
+}
+.ra .post .pic,.ms .post .pic,.visitor .post .pic{
+    width:100px;
+}

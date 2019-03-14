@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <title>Modify CV</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/addpub.css">
+    <link rel="stylesheet" href="../css/addcv.css">
+    <script defer src="../js/fontawesome-all.js"></script>
+    <script defer src="../js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="../css/body.css">
+</head>
+<body>
+<div class="top">Modify CV</div>
+<form method="post" action="../cv/updatecv" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input class="form-control " type="text" id="name" name="name" placeholder="please type name">
+    </div>
+
+    <li class="divider"></li>
+
+    <label class="control-label">Image(please use 4:3(height:width) you can mail to:blissolee@163.com to clip a standard photo)</label>
+    <input id="img_input" type="file" name="imgfile">
+    <label for="img_input"></label>
+    <div class="preview_box"></div>
+
+
+    <div class="form-group">
+        <label class="control-label"></label>
+        <select class="form-control" name="position" >
+            <option value="0">Faculty</option>
+            <option value="1">Post Doc.</option>
+            <!--<option value="2">Phd</option>-->
+            <option value="3">Research Assistant</option>
+            <option value="4">Master</option>
+            <!--<option value="5">Gradute</option>-->
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Interest</label>
+        <input class="form-control " type="text" id="interest" name="interest" placeholder="please type interest">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Email</label>
+        <input class="form-control " type="text" id="email" name="email" placeholder="please type title">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Office</label>
+        <select class="form-control" name="office">
+            <option>EMI Lab </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Awards&Honor</label>
+        <input class="form-control " type="text" id="award" name="award" placeholder="please type awards">
+    </div>
+    <div class="form-group">
+        <label for="describe">Intrduce yourself:</label>
+        <textarea type=" text" class="form-control" id="describe" name="describe" placeholder="please input your information" style="height:100px"></textarea>
+    </div>
+    <div class="form-group">
+        <textarea name="id"   hidden ></textarea>
+    </div>
+
+    <div>
+
+    <input type="submit" class="btn-default">
+    </div>
+
+</form>
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    $.extend({// 获取参数的方法
+        getUrlVars: function(){
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        getUrlVar: function(name){
+            return $.getUrlVars()[name];
+        }
+    });
+    function initCv(data){
+        $("input[name|='name']").val(data.username)
+        $("input[name|='position']").val(data.position)
+        $("input[name|='interest']").val(data.interest)
+        $("input[name|='email']").val(data.email)
+        $("input[name|='office']").val(data.office)
+        $("input[name|='award']").val(data.award)
+        $("textarea[name|='id']").val(data.id)
+        $("textarea[name|='describe']").val(data.describe)
+        $(".preview_box").append("<img class=\"preview\" src=\""+data.imgpath+"\" alt= \"preview\"/>")
+        console.log(data.imgpath)
+        console.log($(".preview_box").html())
+
+
+    }
+    $(function () {
+        var id = $.getUrlVar("id");
+        $.post("../cv/getbyid",{
+            id:id,
+        }
+            ,function (data) {
+                initCv(data);
+            })
+
+    })
+    $("#img_input").on("change", function(e){
+
+        var file = e.target.files[0]; //获取一张图片资源
+
+        // 只选择图片文件
+//        if (!file.type.match('image.*')) {
+//            return false;
+//        }
+
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file); // 读取文件
+
+        // 渲染文件
+        reader.onload = function(arg) {
+
+            var img = '<img class="preview" src="' + arg.target.result + '" alt="preview"/>';
+            $(".preview_box").empty().append(img);
+        }
+    });
+
+</script>
+
+</body>
+</html>

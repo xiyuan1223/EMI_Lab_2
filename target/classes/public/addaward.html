@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>addaward</title>
+
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/memdetail.css">
+
+</head>
+<body>
+<div id="container">
+    <form id="myForm" method="post" target="nm_iframe">
+        <p>
+            <label for="cardid">工号/学号:</label>
+            <input type="text" name="cardid" id="cardid">
+
+        </p>
+        <p>
+            <label for="username" class="control-label">Username</label>
+            <input type="text" name="username" id="username">
+        </p>
+
+        <p>
+            <label  class="control-label">type</label>
+            <select class="form-control" name="type" >
+                <option value="0" selected="selected">award</option>
+                <option value="1">professional activities</option>
+            </select>
+        </p>
+
+
+        <p>
+            <label for="var1">项目</label>
+            <input type="text" name="var1" id="var1">
+            <span class="removeVar">删除</span>
+        </p>
+        <p><span id="addVar">新增一项</span></p>
+        <p><input type="button" id="submitall" value="提交" class="btn btn-default"></p>
+    </form>
+
+    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+</div>
+</body>
+<script>
+    //初始参数个数
+    var varCount = 2;
+
+    $(function () {
+        //新增按钮点击
+        $('#addVar').on('click', function(){
+            varCount++;
+            $node = '<p><label for="var'+varCount+'">项目 '+varCount+': </label>'
+                + '<input type="text" name="var'+varCount+'" id="var'+varCount+'">'
+                + '<span class="removeVar">删除</span></p>';
+            //新表单项添加到“新增”按钮前面
+            $(this).parent().before($node);
+        });
+
+        //删除按钮点击
+        $('form').on('click', '.removeVar', function(){
+            $(this).parent().remove();
+            //varCount--;
+        });
+        $("form").on("click","#submitall",function() {
+            console.log("helloworld")
+            var awardArray = new Array();
+            $('input[name^="var"]').each(function(){
+                awardArray.push($(this).val());
+            });
+            console.log(awardArray)
+
+            var type = $('select[name="type"]').val();
+            var username = $('input[name="username"]').val()
+            var cardid = $('input[name="cardid"]').val()
+            console.log(awardArray);
+            console.log(type,username,cardid)
+            var awards = JSON.stringify(awardArray);
+
+
+
+            var jsontemp = {
+                cardid:cardid,
+                username:username,
+                award:awards,
+                type:type,
+            }
+            $.ajax(
+                {
+                    type:"post",
+                    url:"award/addaward",
+                    data:jsontemp,
+                    async: true,
+                    dataType:"text",
+                    success: function (data) {
+                        console.log("ajax success done")
+                        window.location.href = "addaward.html";
+                        alert("success");
+                    },
+                    error: function (status) {
+                        console.log(status);
+                    }
+                }
+            )
+
+        })
+    });
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Group</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="css/body.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=mAcmsGkSECjAOc3z4F4zQj5bMAu4SYF3"></script>
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a  href="emi.html">Home</a></li>
+            <li><a href="member.html">Members</a></li>
+            <li><a href="research.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News&Info</a></li>
+            <li><a style="color:black" href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--**************************************头部****************************************************************-->
+<div class="full">
+    <H2><b>CONTACT</b></H2>
+    <div class="container">
+        <div class="left">
+            <h4>Evolving Maching Intelligence Group</h4>
+            <i class="fas fa-school"></i>
+            <h4 style="display:inline">SUSTech</h4>
+            <h5>Address: Room 603, Innovation Park 10, No 1088, Xueyuan Rd., Xili, Nanshan District, Shenzhen, Guangdong, China 518055 </h5>
+            <h5>Email:chengr@sustc.edu.cn</h5>
+            <!--<h5>Tel:0557-12345678</h5>-->
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">Your Name：</label>
+                    <input type="text" class="form-control" id="name" placeholder="please input your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email：</label>
+                    <input type="email" class="form-control" id="email" placeholder="please input your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea type="text" class="form-control" id="message" placeholder="please input your message" style="height:100px"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default" style="background-color: #2077a8;color:white" >send</button>
+            </form>
+        </div>
+
+        <!--<div class="right" id="map">-->
+
+        <div class="right" id="map">
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var map = new BMap.Map("map");
+    // 创建地图实例
+    var point = new BMap.Point(114.005945,22.59874);
+    // 创建点坐标
+    map.centerAndZoom(point, 15);
+    // 初始化地图，设置中心点坐标和地图级别
+</script>
+<!--******************************************添加google地图************************************************-->
+
+<!--<script>-->
+    <!--function initMap() {-->
+        <!--var uluru = {lat:22.593890, lng: 113.998895};-->
+        <!--var map = new google.maps.Map(document.getElementById('map'), {-->
+            <!--zoom: 15,-->
+            <!--center: uluru-->
+        <!--});-->
+        <!--var marker = new google.maps.Marker({-->
+            <!--position: uluru,-->
+            <!--map: map-->
+        <!--});-->
+    <!--}-->
+<!--</script>-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA36KIhK5OU6EEDk9mR3EzeB5h1EMmRa2A&callback=initMap">
+</script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";  // 地址会改变参数也会被传递但是不会打开新窗口
+    })
+</script>
+</body>
+</html>

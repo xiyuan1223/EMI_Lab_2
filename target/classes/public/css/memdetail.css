@@ -1,0 +1,40 @@
+#container{
+    width:380px;
+    margin:20px auto;
+    padding:15px;
+    background-color:#eee;
+    border-radius: 15px;
+}
+/** 新增按钮 **/
+#addVar{
+    margin:0 0 0 52px;
+    padding:5px;
+    display:inline-block;
+    background-color:#3A9668;
+    color:#f1f1f1;
+    border:1px solid #005;
+    border-radius: 4px;
+}
+/** 删除按钮 **/
+.removeVar{
+    margin:auto;
+    padding:5px;
+    display:inline-block;
+    background-color:#B02109;
+    color:#f1f1f1;
+    border:1px solid #005;
+    border-radius: 4px;
+}
+
+#addVar:hover, .removeVar:hover{
+    cursor: pointer;
+}
+
+.alignRight{
+    text-align: right;
+}
+
+input, textarea{
+    padding:5px;
+    font-size: 16px;
+}

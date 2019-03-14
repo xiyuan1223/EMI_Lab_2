@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Group</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/publication.css">
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="css/body.css">
+
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a  href="emi.html">Home</a></li>
+            <li><a href="member.html">Members</a></li>
+            <li><a href="research.html">Projects</a></li>
+            <li><a style="color:black" href="publications.html">Publications</a></li>
+            <li><a href="news.html">News&Info</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--**************************************头部****************************************************************-->
+<div class="distance"></div>
+<div class="type">
+    <h1>Publications by Year</h1>
+    <div class="distance"></div>
+</div>
+<div class="content" id="content">
+
+</div>
+
+
+
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+<script>
+    function createYear(yearlist){
+        data =yearlist
+        console.log(" findyear success");
+        console.log(data);
+        for(i=0;i<data.length;i++){
+            var div = $("#content");
+            div.append("<ul id="+data[i]+"></ul>")
+
+        }
+    }
+    function addpub(paperlist){
+        data = paperlist
+        console.log(" findpaper success");
+        console.log(data);
+
+        $("div.content ul").each(function(index,item){//为每个ul下面添加年份
+            var id = $(item).attr("id");
+            $(item).append("<h3>"+id+"</h3>")
+
+        })
+        for(i=0;i<data.length;i++){
+            var year=data[i].date.substring(0,4);
+
+
+            $("#"+year).append( "<li><span class=\"author\">"+data[i].author+".&nbsp</span> <span class=\"title\">"+data[i].title+"</span><span class=\"journal\">.&nbsp"+data[i].journal+"</span><span class=\"time\">,&nbsp"+year+"</span></li>")
+
+
+
+        }
+    }
+    $(function () {
+       $.post("addpub/findpub",function (data) {
+           createYear(data.yearList);
+           addpub(data.paperList);
+       })
+    })
+
+
+</script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";
+    })
+</script>
+</body>
+</html>

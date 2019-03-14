@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Group</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="css/publication.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/showmember.css">
+
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a  href="emi.html">Home</a></li>
+            <li><a style="color:black" href="member.html">Members</a></li>
+            <li><a href="research.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News&Info</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--<div class="distance"></div>-->
+<!--*******************************     *******头部****************************************************************-->
+<div class="divider"></div>
+<div class ="full">
+
+    <div class ="imgandbasic">
+        <div class ="img">
+
+        </div>
+        <div class ="basic">
+
+        </div>
+    </div>
+
+
+    <div class="bio">
+        <h3>Biography</h3>
+        <hr>
+        <p id ="bioinfo">
+          </p>
+    </div>
+
+
+    <div class = "researchinterest">
+        <h3>Interest</h3>
+        <hr>
+
+    </div>
+
+
+    <div class = "profac">
+        <h3>Professional Activities</h3>
+        <hr>
+    </div>
+
+
+    <div class = "invtal">
+        <h3>Invited Talks</h3>
+        <hr>
+    </div>
+    <div class = "award">
+        <h3>Awards</h3>
+        <hr>
+
+
+
+
+    </div>
+
+
+    <div class = "pub">
+        <h3>Publications</h3>
+        <hr>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    function adduser(user) {
+        var img_area = $(".imgandbasic .img");
+        img_area.append("<img src="+user.imgPath+">");
+            ""
+        var basic_area = $(".imgandbasic .basic");
+        basic_area.append("<h4>"+user.username+"</h4>")
+        basic_area.append(" <p>Department of Computer Science and Engineering, SUSTech</p>\n" +
+            "                    <p>10-603,&nbsp Innovation Park<br>\n" +
+            "                        1088 Xue Yuan Road, Nanshan District, Shenzhen, Guangdong</p>")
+        basic_area.append("<p>Email:"+user.email+"</p>")
+
+        var bio_area  = $(".bio")
+        bio_area.append("<p>"+user.userdes+"</p>");
+
+        var interest_area = $(".researchinterest");
+        console.log("user interest",user.interest)
+        interest_area.append("<p>"+user.interest+"</p>")
+
+
+
+
+    }
+    function addpaper(data) {
+        for(i=0;i<data.length;i++){
+            var year=data[i].date.substring(0,4);
+
+
+            $(".pub").append( "<li id="+data[i].id+"><span class=\"author\">"+data[i].author+".&nbsp</span> <span class=\"title\">"+data[i].title+"</span><span class=\"journal\">.&nbsp"+data[i].journal+"</span><span class=\"time\">,&nbsp"+year+"</span></li>")
+
+
+        }
+    }
+    function addactivity(activitylist) {
+        var profac = $(".profac");
+        for(var i = 0;i<activitylist.length;i++){
+            profac.append("<li>"+activitylist[i]+"</li>")
+        }
+    }
+    function  addinvtal(invtallist) {
+        var invtal = $(".invtal");
+        for(var i = 0;i<invtallist.length;i++){
+            invtal.append("<li>"+invtallist[i]+"</li>")
+        }
+        
+    }
+    function addaward(awardlist) {
+        var award = $(".award")
+        for (var i = 0;i<awardlist.length;i++){
+            award.append("<li>"+awardlist[i]+"</li>")
+        }
+
+        
+    }
+</script>
+<script>
+    $.extend({// 获取参数的方法
+        getUrlVars: function(){
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        getUrlVar: function(name){
+            return $.getUrlVars()[name];
+        }
+    });
+    var id = $.getUrlVar('id');
+
+    $.post("cv/getdetailbyid",{
+        id:id
+    },function (data) {
+        console.log(data)
+
+        var user = data.user;
+        var paperlist = data.paperlist;
+        var awardlist = data.awardlist;
+        var activitylist=data.activitylist;
+        var invtallist = data.invtallist;
+        adduser(user);
+        addactivity(activitylist);
+        addinvtal(invtallist);
+        addpaper(paperlist);
+        addaward(awardlist);
+
+    })
+</script>
+
+
+
+
+<script>
+    $(document).on("click", ".newscontent_p", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        window.location.href="shownews.html?id="+id;  // 地址会改变参数也会被传递但是不会打开新窗口
+    })
+
+</script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+.full{
+    width:52%;
+    margin:0 auto;
+}
+.imgandbasic .img{
+    display:inline;
+}
+.imgandbasic .basic{
+    display: inline-block;
+    margin-left:30px;
+    margin-top:0px;
+    height:200px;
+
+}
+.imgandbasic .img img {
+    /*width:150px;*/
+    float: left;
+    height: 200px;
+
+
+}
+.divider{
+    height:50px;
+
+}
+.bio{
+    text-align:justify;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+
+}
+

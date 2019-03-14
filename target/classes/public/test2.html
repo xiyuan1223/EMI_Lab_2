@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>EMI Group</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/addresearch.css">
+    <link rel="stylesheet" href="css/body.css">
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a  href="emi.html">Home</a></li>
+            <li><a href="member.html">Members</a></li>
+            <li><a style="color:black" href="research.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News&Info</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--**************************************头部****************************************************************-->
+<div class="distance"></div>
+
+<div class="research">
+    <div class="type">
+        <h1>Deep Learning</h1>
+        <div class="distance"></div>
+    </div>
+    <ul id="listresearch">
+        <li id="8"><</li>
+    </ul>
+
+</div>
+<div class="distance"></div>
+<div class="research">
+    <div class="type"><h1>Evolutionary Computation</h1>
+        <div class="distance"></div>
+    </div>
+    <ul id="listresearch_evl">
+    </ul>
+
+
+
+</div>
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    $.ajax((
+        {
+            type: "post",
+            url: "research/findall",
+            async: true,
+            dataType: "json",
+            success: function (data) {
+
+                console.log("find research success");
+                for (i = 0; i < data.length; i++) {
+                    if(data[i].abs.length>=270){
+                        data[i].abs = data[i].abs.substring(0,270)+"..."
+                    }
+                    else{
+                        data[i].abs = data[i].abs.substring(0,270)+"..."
+                    }
+                    if(data[i].type==0){
+
+                        var ul = $("#listresearch");
+                        ul.append("<li><div id="+data[i].id+" class=\"preImg\"><img id="+data[i].id+" src="+data[i].preImage+"></div>"+
+                            "<div class=\"rightdis\" id="+data[i].id+"><h3>"+data[i].title+"</h3>"+data[i].abs+" <p id="+data[i].id+" class=\'more\'><a>[more]</a></p>" +
+                            "<p id = "+data[i].codePath+" class=\'code\'><a>[code]</a></p> <p id = "+data[i].pdfPath+ " class=\'pdf\'><a>[pdf]</a></p></div></li>")
+
+
+                    }
+                    else if(data[i].type==1){
+                        var ul = $("#listresearch_evl");
+                        ul.append("<li><div id="+data[i].id+" class=\"preImg\"><img id="+data[i].id+" src="+data[i].preImage+"></div>"+
+                            "<div class=\"rightdis\" id="+data[i].id+"><h3>"+data[i].title+"</h3>"+data[i].abs+" <p id="+data[i].id+" class=\'more\'><a>[more]</a></p>" +
+                            " <p id = "+data[i].codePath+" class=\'code\'><a>[code]</a></p> <p id = "+data[i].pdfPath+ " class=\'pdf\'><a>[pdf]</a></p></div></li>")
+
+                        var rightdis = $("li[id="+data[i].id+"]"+" .rightdis");
+                        console.log(rightdis.html());
+                        rightdis.append("<p class='pdf'><a>[test]</a></p>")
+                    }
+                }
+
+
+            },
+            error: function (data) {
+                alert("error,please try again");
+
+            }
+        }
+    ))
+</script>
+
+<script>
+    $(document).on("click", ".more,.preImg", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        window.location.href = "showresearch.html?id=" + id;  // 地址会改变参数也会被传递但是不会打开新窗口
+    })
+    $(document).on("click", ".code", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        console.log(id)
+        window.location=id;
+    })
+    $(document).on("click", ".pdf", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        window.location=id;
+
+
+    });
+</script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";
+    })
+</script>
+</body>
+
+</html>

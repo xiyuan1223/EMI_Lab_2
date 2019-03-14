@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Cv</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/news.css">
+    <link rel="stylesheet" href="../css/publication.css">
+    <script defer src="../js/fontawesome-all.js"></script>
+    <script defer src="../js/fa-v4-shims.js"></script>
+</head>
+<body>
+
+    <ul id="listcv" calss="news"></ul>
+
+
+</body>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    function btnedit(id) {
+        window.location.href="modifycv.html?id="+id;
+    }
+    function btndelete(id){
+        $.post("../cv/deletecv",{
+            id:id
+        },function (data) {
+            window.location.reload()
+
+        }).error(function (xhr) {
+            console.log(xhr.status);
+        })
+    }
+    var initCv = function(data){
+        var listcv = $("#listcv");
+        for(var i = 0;i<data.length;i++){
+            listcv.append("<li id="+data[i].id+">Name:"+data[i].username
+                +"&nbsp&nbsp&nbsp Position:"+data[i].position+"</li><button id="+data[i].id+" class=\"btn btn-success edit\">编辑</button><button id="+data[i].id+" class=\"btn btn-danger delete\" >删除</button>")
+        }
+    }
+    $(function () {
+        $.post("../cv/getcv", function (data) {
+
+            initCv(data)
+        }).error(function (xhr) {
+            console.log(xhr.status)
+        })
+        $(document).on('click', ".edit", function () {
+            btnedit(this.id);
+        });
+        $(document).on('click', ".delete", function () {
+            btndelete(this.id)
+        });
+
+
+    })
+</script>
+</html>

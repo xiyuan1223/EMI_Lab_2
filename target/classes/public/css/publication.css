@@ -1,0 +1,50 @@
+.content{
+    width:52%;
+    margin:3px  auto;
+    
+
+}
+a{
+    color: #ff1f13;
+    text-decoration:none;
+}
+.content li{
+    margin-bottom:20px;
+    text-align: justify;
+}
+.pub li{
+    margin-bottom:20px;
+    text-align: justify;
+}
+.author{
+
+}
+.title{
+    text-decoration: underline;
+}
+.journal{
+    font-weight:bold;
+
+}
+.time{
+
+}
+
+.type{
+    margin:0 auto;
+    text-align:center;//水平居中
+}
+.code, .pdf{
+    display: inline-block;
+
+
+}
+.code a, .pdf  a{
+
+    color: #2669cb;
+
+}
+.more:hover, .code:hover, .pdf:hover{
+    cursor:pointer;
+}
+

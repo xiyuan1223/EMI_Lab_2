@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Paper</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/addpub.css">
+    <link rel="stylesheet" href="../css/publication.css">
+    <script  src="../js/laydate/laydate.js"></script>
+</head>
+<body>
+<div class="top">Modify Publications</div>
+
+
+
+<form id="pubinfo" role="form" action="../addpub/updatepaper" method="post">
+    <div class="form-group">
+        <label class="control-label">Author(please use comma to seperate different people)</label>
+        <input class="form-control " type="text" id="author" name="author" placeholder="please type author">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Title</label>
+        <input  class="form-control " type="text" id="title" name="title" placeholder="please  type Title">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Type</label>
+        <input class="form-control input-sm type" id="type" name="type" type="text">
+    </div>
+    <div class="form-group">
+        <label class="control-label">conference&journal name</label>
+        <input class="form-control input-sm journal" type="text"id="journal" name="journal" placeholder="plase type journal">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date</label>
+        <input   class="form-control input-sm time" type="text" id="date" name="date" placeholder="please choose date">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Place</label>
+        <input   class="form-control input-sm " type="text" id="place" name="place" placeholder="please type in place ">
+    </div>
+    <textarea name="id" id="" cols="30" rows="10" hidden ></textarea>
+    <div>
+    <input id="submitId" type="submit" class="btn btn-danger" value="send"></input>
+    <input id="previewId"  type="button" class="btn btn-success" onclick="showPre()" value="preview"></input>
+    </div>
+</form>
+
+
+<div class="preview">
+    <h3>preview:</h3>
+    <ul id="preview-list"></ul>
+
+</div>
+
+<!--****************************************弹出框****************************************************************-->
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">模态弹出窗标题</h4>
+            </div>
+            <div class="modal-body">
+                <p>模态弹出窗主体内容</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+
+</div>
+<script>
+    laydate.render({
+        elem: '#date' //或 elem: document.getElementById('test')、elem: lay('#test') 等
+    });
+</script>
+<script  src="../js/fontawesome-all.js" defer></script>
+<script  src="../js/fa-v4-shims.js" defer></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+<script>
+    $.extend({// 获取参数的方法
+        getUrlVars: function(){
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        getUrlVar: function(name){
+            return $.getUrlVars()[name];
+        }
+    });
+    function initPaper(data){
+        $("input[name|='author']").val(data.author);
+        $("input[name|='title']").val(data.title);
+        $("input[name|='type']").val(data.type);
+        $("input[name|='journal']").val(data.journal);
+        $("input[name|='date']").val(data.date);
+        $("input[name|='place']").val(data.place);
+        $("textarea[name|='id']").val(data.id);
+
+    }
+    $(function () {
+        var id = $.getUrlVar("id");
+        $.post("../addpub/findbyid",{
+            id:id,
+        }
+            ,function (data) {
+                console.log("getpaper succeeded");
+                initPaper(data);
+            })
+
+    })
+</script>
+
+<script>
+
+    function  showPre() {
+        var ul = $("#preview-list");
+        ul.append("<li><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi blanditiis facere inventore mollitia nihil praesentium quam sed. A ad cum enim eos fuga illum itaque laborum quas, voluptas, voluptate, voluptates.</span></li>")
+        ul.append("<li>"+"<span class='author'>"+$("#pubinfo input[name=author]").val()+"</span>"+
+            "<span class='title'>"+$("#pubinfo input[name=title]").val()+"</span>"+
+            "<span class='journal'>"+$("#pubinfo input[name=journal]").val()+"</span>"+
+            "<span >"+$("#pubinfo input[name=date]").val()+"</span>"+
+            "<span >"+$("#pubinfo input[name=place]").val()+"</span>"+"</li>")
+    }
+
+</script>
+

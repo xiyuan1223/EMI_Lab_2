@@ -1,0 +1,81 @@
+
+html{overflow-x : hidden ; height : 100% ; margin : 0 ; padding : 0 ; }
+body{ height : 99% ; margin : 0 ;  overflow-x : hidden ; }
+.distance{
+    height:50px;
+}
+.research {
+    width: 52%;
+    margin: 0 auto;
+}
+
+.preview_box img {
+    width: 200px;
+    height:100px;
+    margin: 0;
+}
+.preImg{
+    display: inline-block;
+    /*position: relative;*/
+    float: left;
+    width: 200px;
+    height:100px;
+    max-width: 200px;
+    max-height: 100px;
+
+}
+.preImg:hover{
+    cursor:pointer;
+}
+.research li{
+    display:block;
+}
+.research .preImg img{
+
+    margin:0;
+    width:200px;
+    max-width: 200px;
+    height: 100px;
+    max-height: 100px;
+
+
+}
+.research .rightdis{
+    /*position: relative;*/
+    display: inline-block;
+    /*white-space:pre-line;*/
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:700px;
+    height:100px;
+    max-width: 700px;
+    max-height: 100px;
+    margin-left:30px;
+   padding:0px;
+}
+.research li{
+    min-width: 1000px;
+    list-style-type: none;
+    max-height: 100px;
+    margin-bottom: 20px;
+}
+.rightdis h3{
+    font-family: Microsoft YaHei;
+    font-weight: bold;
+    margin: 0;
+}
+.more, .code, .pdf{
+    display: inline-block;
+    color: #2669cb;
+
+}
+.more:hover, .code:hover, .pdf:hover{
+    cursor:pointer;
+}
+.type{
+    margin:0 auto;
+}
+.type h1{
+
+    text-align:center;//水平居中
+}

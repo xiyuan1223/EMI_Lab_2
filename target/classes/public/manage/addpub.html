@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Publications</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/addpub.css">
+    <link rel="stylesheet" href="../css/publication.css">
+    <script  src="../js/laydate/laydate.js"></script>
+
+</head>
+<body>
+<div class="top">Add Publications</div>
+
+
+
+<form id="pubinfo" method="post" action="../addpub/addpub" role="form" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="control-label">CardId(please use comma to seperate different people)</label>
+        <input class="form-control " type="text" id="cardid" name="cardid" placeholder="please type CardId">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Author(please use comma to seperate different people)</label>
+        <input class="form-control " type="text" id="author" name="author" placeholder="please type author">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Title</label>
+        <input  class="form-control " type="text" id="title" name="title" placeholder="please  type Title">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Type</label>
+        <input class="form-control input-sm type" id="type" name="type" type="text">
+    </div>
+    <div class="form-group">
+        <label class="control-label">conference&journal name</label>
+        <input class="form-control input-sm journal" type="text"id="journal" name="journal" placeholder="plase type journal">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date</label>
+        <input   class="form-control input-sm time" type="text" id="date" name="date" placeholder="please choose date">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Place</label>
+        <input   class="form-control input-sm " type="text" id="place" name="place" placeholder="please type in place ">
+    </div>
+
+    <label class="control-label">Code</label>
+    <input id="code" type="file" name="code">
+
+    <label class="control-label">Pdf</label>
+    <input id="pdf" type="file" name="pdf">
+
+    <input id="submitId" type="submit" class="btn btn-danger" value="send">
+    <input id="previewId"  type="button" class="btn btn-success" onclick="showPre()" value="preview"></input>
+</form>
+
+
+<div class="preview">
+    <h3>preview:</h3>
+    <ul id="preview-list"></ul>
+
+</div>
+
+<!--****************************************弹出框****************************************************************-->
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">模态弹出窗标题</h4>
+            </div>
+            <div class="modal-body">
+                <p>模态弹出窗主体内容</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+
+</div>
+<script>
+    laydate.render({
+        elem: '#date' //或 elem: document.getElementById('test')、elem: lay('#test') 等
+    });
+</script>
+<script  src="../js/fontawesome-all.js" defer></script>
+<script  src="../js/fa-v4-shims.js" defer></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+
+<script>
+   // $(document).ready(function () {
+       //     $("#submitId").click(function () {
+       //
+       //         $.ajax(
+       //             {
+       //                 type:"post",
+       //                 url:"../addpub/addpub",
+       //                 data:$("#pubinfo").serialize(),
+       //                 async: true,
+       //                 dataType:"json",
+       //                 success: function (data) {
+       //                     console.log(data);//输出提交的表表单
+       //
+       //                     alert("success");
+       //                 },
+       //                 error: function (status) {
+       //                     console.log(status);
+       //                 }
+       //             }
+       //         )
+       //
+       //     })
+       // })
+       //
+       function showPre() {
+           var ul = $("#preview-list");
+
+           ul.append("<li>" + "<span class='author'>" + $("#pubinfo input[name=author]").val() + "</span>" +
+               "<span class='title'>" + $("#pubinfo input[name=title]").val() + "</span>" +
+               "<span class='journal'>" + $("#pubinfo input[name=journal]").val() + "</span>" +
+               "<span >" + $("#pubinfo input[name=date]").val() + "</span>" +
+               "<span >" + $("#pubinfo input[name=place]").val() + "</span>" + "</li>")
+
+       }
+
+</script>

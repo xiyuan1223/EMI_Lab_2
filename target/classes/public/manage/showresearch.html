@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SUSTech</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/news.css">
+    <link rel="stylesheet" href="../css/publication.css">
+    <script defer src="../js/fontawesome-all.js"></script>
+    <script defer src="../js/fa-v4-shims.js"></script>
+</head>
+<body>
+
+<ul id="listnews" class="news"></ul>
+
+
+</body>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    function btnedit(id) {
+        window.location.href="modifyNews.html?id="+id;
+    }
+    function btndelete(id){
+        $.post("../research/deleteresearch",{
+            id:id
+        },function () {
+            window.location.reload()
+        }).error(function (xhr) {
+            console.log(xhr.status);
+        })
+    }
+    var initnews = function(data){
+        var listNews = $("#listnews");
+        for(var i = 0;i<data.length;i++){
+
+            listNews.append("<li class=\"jumpnews\" id=" + data[i].id + "><a href=\"#\">" +"<h3>"
+                +data[i].title+"</h3>"  + data[i].abs + "</a></li><button id="+data[i].id+" class=\"btn btn-success edit\">编辑</button><button id="+data[i].id+" class=\"btn btn-danger delete\" >删除</button>")
+        }
+    }
+    $(function () {
+        $.post("../research/findall", function (data) {
+
+            initnews(data)
+        }).error(function (xhr) {
+            console.log(xhr.status)
+        })
+        $(document).on('click', ".edit", function () {
+            btnedit(this.id);
+        });
+        $(document).on('click', ".delete", function () {
+            btndelete(this.id)
+        });
+
+
+    })
+</script>
+</html>

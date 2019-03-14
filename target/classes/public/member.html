@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Group(Evolving Machine Intelligence Group)</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/member.css">
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="js/fa-v4-shims.js"></script>
+    <link rel="stylesheet" href="css/body.css">
+</head>
+<body>
+
+<!--**************************************头部****************************************************************-->
+<div class="header">
+
+    <div class="logo">
+        <!--<img src="img/sustech%20logo2.png">-->
+    </div>
+    <div class="left_title">
+        <h1 class="sustc" style="color:white"><b >SUSTech</b></h1>
+        <h3 style="color:white;margin:5px">Evolving Machine Intelligence (EMI) Group</h3>
+    </div>
+    <div class="center">
+        <ul class="navi">
+            <li ><a  href="emi.html">Home</a></li>
+            <li><a style="color:black" href="member.html">Members</a></li>
+            <li><a href="research.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="news.html">News&Info</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+<!--**************************************头部****************************************************************-->
+
+
+<div class="full">
+    <div class="facultyarea">
+        <h3>FACULTY</h3>
+        <div id="facDiv"></div>
+        <br><br>
+    </div>
+    <div class="postdocarea">
+        <h3>Post Doctor Fellow</h3>
+        <div id="pdDiv"></div>
+        <br><br>
+    </div>
+
+
+    <div class="raarea">
+        <h3>Research Assistant</h3>
+        <div class="ra container">
+
+        </div>
+        <br><br>
+
+    </div>
+
+    <div class="masterarea">
+        <h3>Post Graduate</h3>
+        <div class="ms container">
+
+        </div>
+
+
+    </div>
+
+
+    <div class="graduate">
+
+    </div>
+
+    <div class="visarea">
+        <h3>Visitors</h3>
+        <div class="visitor container">
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+<script>
+
+    var initCv = function (data) {
+        console.log(data)
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].position)
+            var tempdiv = $("<div></div>")
+
+            var imgdiv = $("<div></div>")
+            var img = $("<img>")
+            img.attr("src",data[i].imgPath)
+            imgdiv.append(img)
+
+            var desdiv = $("<div></div>")
+            desdiv.append("<h4><a id ="+data[i].id+" class=\'getdetail\'>"+data[i].username+"</a></h4>");
+            desdiv.append(" <p>Department of Computer Science and Engineering, SUSTech</p>\n" +
+                "                    <p>10-603,&nbsp Innovation Park<br>\n" +
+                "                        1088 Xue Yuan Road, Nanshan District, Shenzhen, Guangdong</p>")
+            desdiv.append("<p>Email:"+data[i].email+"</p>")
+
+            if(data[i].position==="0"){//facult
+                console.log("hello")
+                imgdiv.addClass("col-md-2 pic")
+                tempdiv.append(imgdiv);
+                desdiv.addClass("col-md-10 description")
+                tempdiv.append(desdiv);
+                tempdiv.addClass("container faculty")
+                $("#facDiv").append(tempdiv);
+                console.log($("#facDiv").html())
+
+            }
+            else if(data[i].position=="1"){//post doc
+
+                imgdiv.addClass("col-md-2 pic")
+                tempdiv.append(imgdiv);
+                desdiv.addClass("col-md-10 description")
+                tempdiv.append(desdiv);
+                tempdiv.addClass("container pd")
+                $("#pdDiv").append(tempdiv);
+            }
+            else if(data[i].position=="2"){//doc
+
+
+            }
+            else if(data[i].position=="3"){//ra
+                imgdiv.addClass("pic")
+                tempdiv.append(imgdiv);
+                desdiv.addClass("description")
+                tempdiv.append(desdiv);
+                tempdiv.addClass("col-md-6 post")
+                $(".ra").append(tempdiv);
+
+            }
+            else if(data[i].position=="4"){//master
+                imgdiv.addClass("pic")
+                tempdiv.append(imgdiv);
+                desdiv.addClass("description")
+                tempdiv.append(desdiv);
+                tempdiv.addClass("col-md-6 post")
+                $(".ms").append(tempdiv);
+
+            }
+            else if(data[i].position=="5"){//graduate
+
+            }
+            else if(data[i].position=="6"){
+                imgdiv.addClass("pic")
+                tempdiv.append(imgdiv);
+                desdiv.addClass("description")
+                tempdiv.append(desdiv);
+                tempdiv.addClass("col-md-6 post")
+                $(".visitor").append(tempdiv);
+
+            }
+
+
+        }
+
+    }
+    $(function () {
+        $.post("cv/getcv", function (data) {
+
+            initCv(data)
+        }).error(function (xhr) {
+            console.log(xhr.status)
+        })
+
+
+
+    })
+</script>
+
+<script>
+    $(document).on("click", ".getdetail", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+
+        var id = $(this).attr("id")
+        window.location.href="showmember.html?id="+id;  // 地址会改变参数也会被传递但是不会打开新窗口
+    })
+</script>
+<script>
+    $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
+        window.location.href="http://www.sustc.edu.cn";
+    })
+</script>
+</body>
+</html>

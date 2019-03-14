@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add News</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/addpub.css">
+    <script defer src="../js/fontawesome-all.js"></script>
+    <script defer src="../js/fa-v4-shims.js"></script>
+
+    <script src="../ckeditor/ckeditor.js"></script>
+    <script src="../ckfinder/ckfinder.js"></script>
+    <script  src="../js/laydate/laydate.js"></script>
+
+</head>
+
+<body>
+<div class="top">Add News</div>
+
+<form method="post" action="../addnews/addnews">
+
+    <div class="form-group">
+        <label class="control-label">Title(please use comma to seperate different people)</label>
+        <input class="form-control " type="text" id="title" name="title" placeholder="please type title">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Abstract(摘要)</label>
+        <input  class="form-control " type="text" id="abs" name="abs" placeholder="please  type Title">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date</label>
+        <input   class="form-control input-sm time" type="text" id="date" name="date" placeholder="please choose date">
+    </div>
+    <textarea name="text" id="editor1" rows="10" cols="80">    This is my textarea to be replaced with CKEditor.           </textarea>
+    <script type="text/javascript">
+        var editor = CKEDITOR.replace( 'editor1',{
+            language: 'zh-cn',
+            uiColor: '#c3c8d1',
+            // customConfig: '/ckeditor/algoConfig.js' //自定义自己的toobar风格
+
+            height:700,     //编辑器高度
+
+        removeButtons : 'Source,Save,NewPage,Scayt',
+        image_previewText:'aaa ',     //预览区域显示内容
+        filebrowserImageBrowseUrl : '',
+        filebrowserImageUploadUrl : '/addimage/uploadImage.do',
+
+        } );
+        CKFinder.setupCKEditor(editor, '/ckfinder/');
+
+    </script>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+
+
+<!--*****************************************页底****************************************************************-->
+<div class="footpage">
+    <div class="description">
+        <h2>SUSTech EMI Group</h2>
+        <p>@2018 all rights reserved</p>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

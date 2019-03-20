@@ -16,7 +16,7 @@ public interface AwardMapper {
     @Select("select * from award where id=#{id}")
     Award findById(@Param("id")int id);
 
-    @Delete("delete from award wher id =#{id}")
+    @Delete("delete from award where id =#{id}")
     int deleteById(@Param("id")int id);
 
     @Update("update ward set username=#{username},cardid=#{cardid},type=#{type},itemname=#{itemname},conference=#{conference} where id=#{id}")

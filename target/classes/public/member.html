@@ -104,12 +104,17 @@
             var img = $("<img>")
             img.attr("src",data[i].imgPath)
             imgdiv.append(img)
-
-            var desdiv = $("<div></div>")
-            desdiv.append("<h4><a id ="+data[i].id+" class=\'getdetail\'>"+data[i].username+"</a></h4>");
-            desdiv.append(" <p>Department of Computer Science and Engineering, SUSTech</p>\n" +
+            var desdiv_has_address= $("<div></div>")
+            desdiv_has_address.append("<h4><a id ="+data[i].id+" class=\'getdetail\'>"+data[i].username+"</a></h4>");
+            desdiv_has_address.append(" <p>Department of Computer Science and Engineering, SUSTech</p>\n" +
                 "                    <p>10-603,&nbsp Innovation Park<br>\n" +
                 "                        1088 Xue Yuan Road, Nanshan District, Shenzhen, Guangdong</p>")
+            desdiv_has_address.append("<p>Email:"+data[i].email+"</p>")
+            var desdiv = $("<div></div>")
+            desdiv.append("<h4><a id ="+data[i].id+" class=\'getdetail\'>"+data[i].username+"</a></h4>");
+            // desdiv.append(" <p>Department of Computer Science and Engineering, SUSTech</p>\n" +
+            //     "                    <p>10-603,&nbsp Innovation Park<br>\n" +
+            //     "                        1088 Xue Yuan Road, Nanshan District, Shenzhen, Guangdong</p>")
             desdiv.append("<p>Email:"+data[i].email+"</p>")
 
             if(data[i].position==="0"){//facult
@@ -117,7 +122,7 @@
                 imgdiv.addClass("col-md-2 pic")
                 tempdiv.append(imgdiv);
                 desdiv.addClass("col-md-10 description")
-                tempdiv.append(desdiv);
+                tempdiv.append(desdiv_has_address);
                 tempdiv.addClass("container faculty")
                 $("#facDiv").append(tempdiv);
                 console.log($("#facDiv").html())
@@ -193,7 +198,7 @@
 </script>
 <script>
     $(document).on("click", ".sustc", function () {//事件绑定，append 添加的事件不会再刷新事件绑定，js在所有dom加载完之后才执行
-        window.location.href="http://www.sustc.edu.cn";
+        window.location.href="http://www.sustech.edu.cn";
     })
 </script>
 </body>

@@ -127,12 +127,19 @@ public class AddPubController {
 //
 ////        System.out.println(paperList.get(i).getId());
 //        }
+
+        //检索出只有id30001893
+        String cardid = "30001893";
+        List<Paper> checkedList = new ArrayList<Paper>();
+        for(int i = 0;i<paperList.size();i++){
+            if(paperList.get(i).getCardid()!=null&&paperList.get(i).getCardid().trim().contains(cardid)){
+                checkedList.add(paperList.get(i));
+            }
+        }
         jsonObject.put("yearList",yearList);
 
-        jsonObject.put("paperList",paperList);
+        jsonObject.put("paperList",checkedList);
         return jsonObject;
-
-
 
     }
     @ResponseBody
